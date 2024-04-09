@@ -27,19 +27,20 @@ To improve usability, Swagger has been integrated, providing a convenient interf
 version: '3.8'
 
 services:
-  mariadb:
-    image: mariadb:10.6
-    container_name: mariadb-container
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
     environment:
-      MYSQL_ROOT_PASSWORD: sqlpass1234
-      MYSQL_DATABASE: SoftwareEngineerDb
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: software-db
     ports:
-      - "3309:3306"
+      - "3306:3306"
     volumes:
-      - mariadb_data_se:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
+    command: ["mysqld", "--lower_case_table_names=1"]
 
 volumes:
-  mariadb_data_se:
+  mysql-data:
   ```
 
 Save this file as docker-compose.yaml in your project directory, and then run:
